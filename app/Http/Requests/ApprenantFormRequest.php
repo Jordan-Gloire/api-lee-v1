@@ -29,6 +29,8 @@ class ApprenantFormRequest extends FormRequest
             'date_naissance' => 'required|date',
             'lieu_naissance' => 'required|string|max:20',
             'formation' => 'required|array',
+            'adresse' => 'nullable|string|max:255',
+            'ville' => 'nullable|string|max:255',
         ];
     }
 }
