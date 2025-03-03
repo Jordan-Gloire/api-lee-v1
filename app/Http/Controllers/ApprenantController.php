@@ -30,10 +30,11 @@ class ApprenantController extends Controller
     public function store(ApprenantFormRequest $request)
     {
         $apprenant = Apprenant::create($request->validated());
-        if ($request->has('formations')) {
-            // Attach les formations à l'apprenant
-            $apprenant->formations()->attach($request->formations);
+        if (!$request->has('formations')) {
+            return response()->json(['message' => 'Aucune formation selectionnée'],404);
         }
+        // Attach les formations à l'apprenant
+        $apprenant->formations()->attach($request->formations);
         return new ApprenantRessource($apprenant);
     }
 
